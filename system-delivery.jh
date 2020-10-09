@@ -1,0 +1,68 @@
+enum EstadoProduto {
+    DISPONIVEL, INDISPONIVEL
+}
+
+enum StatusdoPedido {
+    PEDIDO, EM_TRANSITO, ENTREGUE 
+}
+
+entity Produto {
+    produto EstadoProduto required,
+	nome String required,
+    descricao String,
+    preco Float,
+    linkParaFoto String,
+    dataDeCadastro LocalDate,
+    totalEmEstoque Float
+}
+
+entity Cliente {
+	nome String required,
+    telefone String,
+    email String unique,
+    login String required,
+    senha String,
+    cepDeEndereco Integer,
+    logradouro String,
+    bairro String,
+    cidade String
+}
+
+relationship OneToMany {
+    Entregador {pedidos} to Pedido {entregador (nome)}
+    Cliente {produtos} to Produto {cliente (nome)}
+}
+
+entity Pedido {
+    statusPedido StatusdoPedido required,
+    pagamento FormadePagamento required,
+	dataDoCadastro LocalDate,
+	listaDeProdutos String,
+	precoTotal Float,
+	valorParaTroco Float,
+    entregadorAlocado Boolean,
+    clientePediuPedido Boolean 
+    observacoesDeEntrega String,
+}
+
+relationship OneToOne {
+	Cliente to Pedido  {cliente (nome)},	
+}
+
+enum FormadePagamento {
+    DINHEIRO, CARTAO
+}
+
+entity Entregador {
+	nome String required,
+    placaDaMoto String,
+    latitudeAtual Double,
+    longitudeAtual Double,
+    cpf Integer required,
+    linkParaFoto String
+}
+
+relationship ManyToMany {
+	Cliente {entregadores} to Entregador {clientes},
+	
+}
