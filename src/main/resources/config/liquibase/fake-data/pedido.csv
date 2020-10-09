@@ -1,0 +1,11 @@
+id;status_pedido;pagamento;data_do_cadastro;lista_de_produtos;preco_total;valor_para_troco;entregador_alocado;cliente_pediu_pedido;observacoes_de_entrega
+1;PEDIDO;DINHEIRO;2020-10-09;Falkland Islands (Malvinas) transmitting;33064;80768;true;true;Tala Borders
+2;ENTREGUE;DINHEIRO;2020-10-09;Beauty deposit;60883;73261;true;true;Towels
+3;EM_TRANSITO;CARTAO;2020-10-09;Fresh;39924;7556;true;false;Generic Metal Chicken Kiribati Down-sized
+4;EM_TRANSITO;DINHEIRO;2020-10-09;orchid red Alabama;63884;64806;true;true;engineer help-desk
+5;ENTREGUE;CARTAO;2020-10-09;Electronics;78311;83147;true;false;District bandwidth
+6;EM_TRANSITO;DINHEIRO;2020-10-09;Azerbaijanian Manat;43395;64317;true;true;Bermuda SQL
+7;EM_TRANSITO;DINHEIRO;2020-10-09;Metal Delaware;88793;3336;true;true;Customer
+8;ENTREGUE;CARTAO;2020-10-09;Buckinghamshire Officer;33797;78505;true;false;intuitive Incredible Wooden Towels Harbor
+9;EM_TRANSITO;DINHEIRO;2020-10-09;Refined Cotton Chair;49203;91251;true;false;Bahraini Dinar Metal
+10;PEDIDO;DINHEIRO;2020-10-09;protocol Shoes;98005;87179;false;true;Global Chilean Peso Unidades de fomento

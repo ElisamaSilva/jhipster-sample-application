@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-entregador-heading" jhiTranslate="sistemaDeliveryApp.entregador.home.createOrEditLabel">Create or edit a Entregador</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.entregador.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                           formControlName="nome"/>
+                    <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nome')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.entregador.placaDaMoto" for="field_placaDaMoto">Placa Da Moto</label>
+                    <input type="text" class="form-control" name="placaDaMoto" id="field_placaDaMoto"
+                           formControlName="placaDaMoto"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.entregador.latitudeAtual" for="field_latitudeAtual">Latitude Atual</label>
+                    <input type="number" class="form-control" name="latitudeAtual" id="field_latitudeAtual"
+                           formControlName="latitudeAtual"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.entregador.longitudeAtual" for="field_longitudeAtual">Longitude Atual</label>
+                    <input type="number" class="form-control" name="longitudeAtual" id="field_longitudeAtual"
+                           formControlName="longitudeAtual"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.entregador.cpf" for="field_cpf">Cpf</label>
+                    <input type="number" class="form-control" name="cpf" id="field_cpf"
+                           formControlName="cpf"/>
+                    <div *ngIf="editForm.get('cpf')!.invalid && (editForm.get('cpf')!.dirty || editForm.get('cpf')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cpf')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('cpf')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.entregador.linkParaFoto" for="field_linkParaFoto">Link Para Foto</label>
+                    <input type="text" class="form-control" name="linkParaFoto" id="field_linkParaFoto"
+                           formControlName="linkParaFoto"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

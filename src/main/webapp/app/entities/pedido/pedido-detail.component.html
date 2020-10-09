@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="pedido">
+            <h2><span jhiTranslate="sistemaDeliveryApp.pedido.detail.title">Pedido</span> {{ pedido.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.statusPedido">Status Pedido</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'sistemaDeliveryApp.StatusdoPedido.' + pedido.statusPedido }}">{{ pedido.statusPedido }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.pagamento">Pagamento</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'sistemaDeliveryApp.FormadePagamento.' + pedido.pagamento }}">{{ pedido.pagamento }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.dataDoCadastro">Data Do Cadastro</span></dt>
+                <dd>
+                    <span>{{ pedido.dataDoCadastro }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.listaDeProdutos">Lista De Produtos</span></dt>
+                <dd>
+                    <span>{{ pedido.listaDeProdutos }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.precoTotal">Preco Total</span></dt>
+                <dd>
+                    <span>{{ pedido.precoTotal }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.valorParaTroco">Valor Para Troco</span></dt>
+                <dd>
+                    <span>{{ pedido.valorParaTroco }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.entregadorAlocado">Entregador Alocado</span></dt>
+                <dd>
+                    <span>{{ pedido.entregadorAlocado }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.clientePediuPedido">Cliente Pediu Pedido</span></dt>
+                <dd>
+                    <span>{{ pedido.clientePediuPedido }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.observacoesDeEntrega">Observacoes De Entrega</span></dt>
+                <dd>
+                    <span>{{ pedido.observacoesDeEntrega }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.cliente">Cliente</span></dt>
+                <dd>
+                    <div *ngIf="pedido.cliente">
+                        <a [routerLink]="['/cliente', pedido.cliente?.id, 'view']">{{ pedido.cliente?.nome }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.pedido.entregador">Entregador</span></dt>
+                <dd>
+                    <div *ngIf="pedido.entregador">
+                        <a [routerLink]="['/entregador', pedido.entregador?.id, 'view']">{{ pedido.entregador?.nome }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/pedido', pedido.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

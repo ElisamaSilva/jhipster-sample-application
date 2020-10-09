@@ -1,0 +1,10 @@
+{
+  "sistemaDeliveryApp": {
+    "StatusdoPedido": {
+      "null": "",
+      "PEDIDO": "PEDIDO",
+      "EM_TRANSITO": "EM_TRANSITO",
+      "ENTREGUE": "ENTREGUE"
+    }
+  }
+}

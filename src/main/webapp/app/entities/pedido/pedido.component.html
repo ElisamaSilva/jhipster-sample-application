@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="sistemaDeliveryApp.pedido.home.title">Pedidos</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-pedido" [routerLink]="['/pedido/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="sistemaDeliveryApp.pedido.home.createLabel">
+            Create a new Pedido
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="pedidos?.length === 0">
+        <span jhiTranslate="sistemaDeliveryApp.pedido.home.notFound">No pedidos found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="pedidos && pedidos.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.statusPedido">Status Pedido</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.pagamento">Pagamento</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.dataDoCadastro">Data Do Cadastro</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.listaDeProdutos">Lista De Produtos</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.precoTotal">Preco Total</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.valorParaTroco">Valor Para Troco</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.entregadorAlocado">Entregador Alocado</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.clientePediuPedido">Cliente Pediu Pedido</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.observacoesDeEntrega">Observacoes De Entrega</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.cliente">Cliente</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.pedido.entregador">Entregador</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pedido of pedidos ;trackBy: trackId">
+                    <td><a [routerLink]="['/pedido', pedido.id, 'view']">{{ pedido.id }}</a></td>
+                    <td jhiTranslate="{{ 'sistemaDeliveryApp.StatusdoPedido.' + pedido.statusPedido }}">{{ pedido.statusPedido }}</td>
+                    <td jhiTranslate="{{ 'sistemaDeliveryApp.FormadePagamento.' + pedido.pagamento }}">{{ pedido.pagamento }}</td>
+                    <td>{{ pedido.dataDoCadastro | date:'mediumDate' }}</td>
+                    <td>{{ pedido.listaDeProdutos }}</td>
+                    <td>{{ pedido.precoTotal }}</td>
+                    <td>{{ pedido.valorParaTroco }}</td>
+                    <td>{{ pedido.entregadorAlocado }}</td>
+                    <td>{{ pedido.clientePediuPedido }}</td>
+                    <td>{{ pedido.observacoesDeEntrega }}</td>
+                    <td>
+                        <div *ngIf="pedido.cliente">
+                            <a [routerLink]="['/cliente', pedido.cliente?.id, 'view']" >{{ pedido.cliente?.nome }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="pedido.entregador">
+                            <a [routerLink]="['/entregador', pedido.entregador?.id, 'view']" >{{ pedido.entregador?.nome }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/pedido', pedido.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/pedido', pedido.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(pedido)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

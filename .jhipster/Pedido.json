@@ -1,0 +1,77 @@
+{
+  "name": "Pedido",
+  "fields": [
+    {
+      "fieldName": "statusPedido",
+      "fieldType": "StatusdoPedido",
+      "fieldValues": "PEDIDO,EM_TRANSITO,ENTREGUE",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "pagamento",
+      "fieldType": "FormadePagamento",
+      "fieldValues": "DINHEIRO,CARTAO",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "dataDoCadastro",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "listaDeProdutos",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "precoTotal",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "valorParaTroco",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "entregadorAlocado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "clientePediuPedido",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "observacoesDeEntrega",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "cliente",
+      "otherEntityField": "nome",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "entregador",
+      "otherEntityRelationshipName": "pedidos",
+      "relationshipName": "entregador",
+      "otherEntityField": "nome"
+    }
+  ],
+  "changelogDate": "20201009214206",
+  "entityTableName": "pedido",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,9 @@
+{
+  "sistemaDeliveryApp": {
+    "EstadoProduto": {
+      "null": "",
+      "DISPONIVEL": "DISPONIVEL",
+      "INDISPONIVEL": "INDISPONIVEL"
+    }
+  }
+}
