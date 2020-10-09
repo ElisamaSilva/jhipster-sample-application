@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cliente">
+            <h2><span jhiTranslate="sistemaDeliveryApp.cliente.detail.title">Cliente</span> {{ cliente.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.nome">Nome</span></dt>
+                <dd>
+                    <span>{{ cliente.nome }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.telefone">Telefone</span></dt>
+                <dd>
+                    <span>{{ cliente.telefone }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.email">Email</span></dt>
+                <dd>
+                    <span>{{ cliente.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.login">Login</span></dt>
+                <dd>
+                    <span>{{ cliente.login }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.senha">Senha</span></dt>
+                <dd>
+                    <span>{{ cliente.senha }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.cepDeEndereco">Cep De Endereco</span></dt>
+                <dd>
+                    <span>{{ cliente.cepDeEndereco }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.logradouro">Logradouro</span></dt>
+                <dd>
+                    <span>{{ cliente.logradouro }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.bairro">Bairro</span></dt>
+                <dd>
+                    <span>{{ cliente.bairro }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.cidade">Cidade</span></dt>
+                <dd>
+                    <span>{{ cliente.cidade }}</span>
+                </dd>
+                <dt><span jhiTranslate="sistemaDeliveryApp.cliente.entregadores">Entregadores</span></dt>
+                <dd>
+                    <span *ngFor="let entregadores of cliente.entregadores; let last = last">
+                        <a [routerLink]="['/entregador', entregadores?.id, 'view']">{{ entregadores.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cliente', cliente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "sistemaDeliveryApp": {
+    "entregador": {
+      "home": {
+        "title": "Entregadors",
+        "createLabel": "Create a new Entregador",
+        "createOrEditLabel": "Create or edit a Entregador",
+        "notFound": "No Entregadors found"
+      },
+      "created": "A new Entregador is created with identifier {{ param }}",
+      "updated": "A Entregador is updated with identifier {{ param }}",
+      "deleted": "A Entregador is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Entregador {{ id }}?"
+      },
+      "detail": {
+        "title": "Entregador"
+      },
+      "nome": "Nome",
+      "placaDaMoto": "Placa Da Moto",
+      "latitudeAtual": "Latitude Atual",
+      "longitudeAtual": "Longitude Atual",
+      "cpf": "Cpf",
+      "linkParaFoto": "Link Para Foto",
+      "pedidos": "Pedidos",
+      "clientes": "Clientes"
+    }
+  }
+}

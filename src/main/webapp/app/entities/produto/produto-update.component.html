@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-produto-heading" jhiTranslate="sistemaDeliveryApp.produto.home.createOrEditLabel">Create or edit a Produto</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.produto.produto" for="field_produto">Produto</label>
+                    <select class="form-control" name="produto" formControlName="produto" id="field_produto">
+                        <option value="DISPONIVEL">{{ 'sistemaDeliveryApp.EstadoProduto.DISPONIVEL' | translate }}</option>
+                        <option value="INDISPONIVEL">{{ 'sistemaDeliveryApp.EstadoProduto.INDISPONIVEL' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('produto')!.invalid && (editForm.get('produto')!.dirty || editForm.get('produto')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('produto')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.produto.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                           formControlName="nome"/>
+                    <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nome')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.produto.descricao" for="field_descricao">Descricao</label>
+                    <input type="text" class="form-control" name="descricao" id="field_descricao"
+                           formControlName="descricao"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.produto.preco" for="field_preco">Preco</label>
+                    <input type="number" class="form-control" name="preco" id="field_preco"
+                           formControlName="preco"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.produto.linkParaFoto" for="field_linkParaFoto">Link Para Foto</label>
+                    <input type="text" class="form-control" name="linkParaFoto" id="field_linkParaFoto"
+                           formControlName="linkParaFoto"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.produto.dataDeCadastro" for="field_dataDeCadastro">Data De Cadastro</label>
+                    <div class="input-group">
+                        <input id="field_dataDeCadastro" type="text" class="form-control" name="dataDeCadastro" ngbDatepicker #dataDeCadastroDp="ngbDatepicker" formControlName="dataDeCadastro"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataDeCadastroDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.produto.totalEmEstoque" for="field_totalEmEstoque">Total Em Estoque</label>
+                    <input type="number" class="form-control" name="totalEmEstoque" id="field_totalEmEstoque"
+                           formControlName="totalEmEstoque"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.produto.cliente" for="field_cliente">Cliente</label>
+                    <select class="form-control" id="field_cliente" name="cliente" formControlName="cliente">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clienteOption.id === editForm.get('cliente')!.value?.id ? editForm.get('cliente')!.value : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackById">{{ clienteOption.nome }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

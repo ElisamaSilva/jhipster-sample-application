@@ -1,0 +1,9 @@
+{
+  "sistemaDeliveryApp": {
+    "FormadePagamento": {
+      "null": "",
+      "DINHEIRO": "DINHEIRO",
+      "CARTAO": "CARTAO"
+    }
+  }
+}

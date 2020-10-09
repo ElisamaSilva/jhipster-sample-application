@@ -1,0 +1,77 @@
+{
+  "name": "Cliente",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "unique"
+      ]
+    },
+    {
+      "fieldName": "login",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "senha",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cepDeEndereco",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "logradouro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cidade",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "produto",
+      "otherEntityRelationshipName": "cliente",
+      "relationshipName": "produtos"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "entregador",
+      "otherEntityRelationshipName": "clientes",
+      "relationshipName": "entregadores",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20201009214106",
+  "entityTableName": "cliente",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

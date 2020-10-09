@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="sistemaDeliveryApp.entregador.home.title">Entregadors</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-entregador" [routerLink]="['/entregador/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="sistemaDeliveryApp.entregador.home.createLabel">
+            Create a new Entregador
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="entregadors?.length === 0">
+        <span jhiTranslate="sistemaDeliveryApp.entregador.home.notFound">No entregadors found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="entregadors && entregadors.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.entregador.nome">Nome</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.entregador.placaDaMoto">Placa Da Moto</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.entregador.latitudeAtual">Latitude Atual</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.entregador.longitudeAtual">Longitude Atual</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.entregador.cpf">Cpf</span></th>
+                    <th scope="col" ><span jhiTranslate="sistemaDeliveryApp.entregador.linkParaFoto">Link Para Foto</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entregador of entregadors ;trackBy: trackId">
+                    <td><a [routerLink]="['/entregador', entregador.id, 'view']">{{ entregador.id }}</a></td>
+                    <td>{{ entregador.nome }}</td>
+                    <td>{{ entregador.placaDaMoto }}</td>
+                    <td>{{ entregador.latitudeAtual }}</td>
+                    <td>{{ entregador.longitudeAtual }}</td>
+                    <td>{{ entregador.cpf }}</td>
+                    <td>{{ entregador.linkParaFoto }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/entregador', entregador.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/entregador', entregador.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(entregador)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

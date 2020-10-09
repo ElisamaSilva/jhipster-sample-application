@@ -1,0 +1,62 @@
+{
+  "name": "Entregador",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "placaDaMoto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "latitudeAtual",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "longitudeAtual",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "Integer",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "linkParaFoto",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "pedido",
+      "otherEntityRelationshipName": "entregador",
+      "relationshipName": "pedidos"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "entregadores",
+      "relationshipName": "clientes",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201009214306",
+  "entityTableName": "entregador",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

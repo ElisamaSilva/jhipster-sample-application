@@ -1,0 +1,117 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-pedido-heading" jhiTranslate="sistemaDeliveryApp.pedido.home.createOrEditLabel">Create or edit a Pedido</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.statusPedido" for="field_statusPedido">Status Pedido</label>
+                    <select class="form-control" name="statusPedido" formControlName="statusPedido" id="field_statusPedido">
+                        <option value="PEDIDO">{{ 'sistemaDeliveryApp.StatusdoPedido.PEDIDO' | translate }}</option>
+                        <option value="EM_TRANSITO">{{ 'sistemaDeliveryApp.StatusdoPedido.EM_TRANSITO' | translate }}</option>
+                        <option value="ENTREGUE">{{ 'sistemaDeliveryApp.StatusdoPedido.ENTREGUE' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('statusPedido')!.invalid && (editForm.get('statusPedido')!.dirty || editForm.get('statusPedido')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('statusPedido')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.pagamento" for="field_pagamento">Pagamento</label>
+                    <select class="form-control" name="pagamento" formControlName="pagamento" id="field_pagamento">
+                        <option value="DINHEIRO">{{ 'sistemaDeliveryApp.FormadePagamento.DINHEIRO' | translate }}</option>
+                        <option value="CARTAO">{{ 'sistemaDeliveryApp.FormadePagamento.CARTAO' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('pagamento')!.invalid && (editForm.get('pagamento')!.dirty || editForm.get('pagamento')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('pagamento')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.dataDoCadastro" for="field_dataDoCadastro">Data Do Cadastro</label>
+                    <div class="input-group">
+                        <input id="field_dataDoCadastro" type="text" class="form-control" name="dataDoCadastro" ngbDatepicker #dataDoCadastroDp="ngbDatepicker" formControlName="dataDoCadastro"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataDoCadastroDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.listaDeProdutos" for="field_listaDeProdutos">Lista De Produtos</label>
+                    <input type="text" class="form-control" name="listaDeProdutos" id="field_listaDeProdutos"
+                           formControlName="listaDeProdutos"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.precoTotal" for="field_precoTotal">Preco Total</label>
+                    <input type="number" class="form-control" name="precoTotal" id="field_precoTotal"
+                           formControlName="precoTotal"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.valorParaTroco" for="field_valorParaTroco">Valor Para Troco</label>
+                    <input type="number" class="form-control" name="valorParaTroco" id="field_valorParaTroco"
+                           formControlName="valorParaTroco"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.entregadorAlocado" for="field_entregadorAlocado">Entregador Alocado</label>
+                    <input type="checkbox" class="form-control" name="entregadorAlocado" id="field_entregadorAlocado"
+                           formControlName="entregadorAlocado"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.clientePediuPedido" for="field_clientePediuPedido">Cliente Pediu Pedido</label>
+                    <input type="checkbox" class="form-control" name="clientePediuPedido" id="field_clientePediuPedido"
+                           formControlName="clientePediuPedido"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.observacoesDeEntrega" for="field_observacoesDeEntrega">Observacoes De Entrega</label>
+                    <input type="text" class="form-control" name="observacoesDeEntrega" id="field_observacoesDeEntrega"
+                           formControlName="observacoesDeEntrega"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.cliente" for="field_cliente">Cliente</label>
+                    <select class="form-control" id="field_cliente" name="cliente" formControlName="cliente">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clienteOption.id === editForm.get('cliente')!.value?.id ? editForm.get('cliente')!.value : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackById">{{ clienteOption.nome }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sistemaDeliveryApp.pedido.entregador" for="field_entregador">Entregador</label>
+                    <select class="form-control" id="field_entregador" name="entregador" formControlName="entregador">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="entregadorOption.id === editForm.get('entregador')!.value?.id ? editForm.get('entregador')!.value : entregadorOption" *ngFor="let entregadorOption of entregadors; trackBy: trackById">{{ entregadorOption.nome }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

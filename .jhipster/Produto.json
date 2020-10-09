@@ -1,0 +1,60 @@
+{
+  "name": "Produto",
+  "fields": [
+    {
+      "fieldName": "produto",
+      "fieldType": "EstadoProduto",
+      "fieldValues": "DISPONIVEL,INDISPONIVEL",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preco",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "linkParaFoto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataDeCadastro",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "totalEmEstoque",
+      "fieldType": "Float"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "produtos",
+      "relationshipName": "cliente",
+      "otherEntityField": "nome"
+    }
+  ],
+  "changelogDate": "20201009214006",
+  "entityTableName": "produto",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
